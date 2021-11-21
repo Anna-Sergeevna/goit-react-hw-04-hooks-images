@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,25 +9,41 @@ import ImageGallery from 'components/ImageGallery';
 
 import './App.css';
 
-class App extends Component {
-  state = {
-    query: '',
+function App() {
+  const [query, setQuery] = useState('');
+
+  const onSubmit = query => {
+    setQuery(query);
   };
 
-  onSubmit = query => {
-    this.setState({ query });
-  };
-
-  render() {
-    const { query } = this.state;
-    return (
-      <Container title="Поиск изображений">
-        <Searchbar onSubmit={this.onSubmit} />
-        <ImageGallery query={query} />
-        <ToastContainer autoClose={3000} />
-      </Container>
-    );
-  }
+  return (
+    <Container title="Поиск изображений">
+      <Searchbar onSubmit={onSubmit} />
+      <ImageGallery query={query} />
+      <ToastContainer autoClose={3000} />
+    </Container>
+  );
 }
+
+// class App extends Component {
+//   state = {
+//     query: '',
+//   };
+
+//   onSubmit = query => {
+//     this.setState({ query });
+//   };
+
+//   render() {
+//     const { query } = this.state;
+//     return (
+//       <Container title="Поиск изображений">
+//         <Searchbar onSubmit={this.onSubmit} />
+//         <ImageGallery query={query} />
+//         <ToastContainer autoClose={3000} />
+//       </Container>
+//     );
+//   }
+// }
 
 export default App;
