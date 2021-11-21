@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <Container title="Поиск изображений">
+    <Container title="Images finder">
       <Searchbar onSubmit={onSubmit} />
       <ImageGallery query={query} />
       <ToastContainer autoClose={3000} />
