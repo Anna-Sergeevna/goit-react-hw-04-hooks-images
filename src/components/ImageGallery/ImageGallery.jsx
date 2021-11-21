@@ -64,16 +64,16 @@ function ImageGallery({ query, onSubmit }) {
   };
 
   const toggleModal = (datasrc, alt) => {
-    // setShowModal(!state.showModal);
-    // setLargeImageURL(largeImageURL: datasrc);
-    // setAlt(alt);
+    setShowModal(prevModal => !prevModal);
+    setLargeImageURL(datasrc);
+    setAlt(alt);
   };
 
   const onGalleryCardClick = e => {
-    // const url = e.target.getAttribute('datasrc');
-    // const alt = e.target.getAttribute('alt');
-    // toggleModal(url, alt);
-    // console.log(url);
+    const url = e.target.getAttribute('datasrc');
+    const alt = e.target.getAttribute('alt');
+    toggleModal(url, alt);
+    console.log(url);
   };
 
   if (status === Status.IDLE) {
