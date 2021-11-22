@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
+
 import ImagesErrorView from './ImagesErrorView';
 import ImagesDataView from './ImagesDataView';
 import ImagesPendingView from './ImagesPendingView';
 import ImagesIdleView from './ImagesIdleView';
+
 import imagesAPI from '../../services/pixabay-api';
+
 import Modal from 'components/Modal';
 import Button from 'components/Button';
+
 import PropTypes from 'prop-types';
 
 const Status = {
@@ -15,7 +19,7 @@ const Status = {
   REJECTED: 'rejected',
 };
 
-function ImageGallery({ query, onSubmit }) {
+function ImageGallery({ query }) {
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [showModal, setShowModal] = useState(false);
@@ -25,16 +29,16 @@ function ImageGallery({ query, onSubmit }) {
   // const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (query.length === 0) return;
+    if (!query) return;
+    // if (query.length === 0) return;
     setPage(1);
-
     setStatus(Status.PENDING);
 
     imagesAPI
       .fetchImages(query)
       .then(images => {
         if (images.hits.length === 0) {
-          throw Error();
+          throw new Error();
         }
         setImages(images.hits);
         setPage(prevPage => prevPage + 1);
@@ -52,7 +56,7 @@ function ImageGallery({ query, onSubmit }) {
       .fetchImages(query, page)
       .then(images => {
         if (images.hits.length === 0) {
-          throw Error();
+          throw new Error();
         }
         setImages(prevImages => [...prevImages, ...images.hits]);
         setPage(prevPage => prevPage + 1);

@@ -1,9 +1,9 @@
 const URL = {
   BASE_URL: `https://pixabay.com/api`,
+  KEY: `23640925-62666e78aedb939489768c224`,
   IMAGE_TYPE: `photo`,
   ORIENTATION: `horizontal`,
   PER_PAGE: 12,
-  KEY: `23640925-62666e78aedb939489768c224`,
 };
 
 function fetchImages(query, page) {
